@@ -16,21 +16,57 @@
             <li><a href="#inicio">Início</a></li>
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#campanha">Campanhas</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
     </nav>
 </header>
 
 <!-- carrossel de imagens-->
-<section class="banner">
-   <div class="carrossel">
-        <img src="css/imagem css/banner1.png" alt="banner 1">
-        <img src="css/imagem css/banner2.png" alt="banner 2">
-   </div>
+<section class="carrossel" id="inicio">
+  <div class="slides" id="slides">
+
+    <!-- SLIDE 1 -->
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('css/imagem\ css/cat.jpg')" ></div>
+      <div class="slide-gradient"></div>
+      <div class="slide-content">
+        <span class="slide-tag">Lume Pet</span>
+        <div class="slide-title">Amor e cuidado<br>para seu pet</div>
+        <div class="slide-date">Produtos naturais, feitos com carinho</div>
+        <button class="slide-btn">Saiba Mais</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+      <div class="slide-bg" style="background-image: url('css/imagem\ css/dog.jpg)" ></div>
+      <div class="slide-gradient"></div>
+      <div class="slide-content">
+        <span class="slide-tag">Adoção</span>
+        <div class="slide-title">Adote um amigo,<br>transforme uma vida</div>
+        <div class="slide-date">Juntos por um mundo melhor para os animais</div>
+        <button class="slide-btn">Adotar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTÕES -->
+  <button class="nav-btn nav-prev" id="prev">&#8249;</button>
+  <button class="nav-btn nav-next" id="next">&#8250;</button>
+
+  <!-- DOTS -->
+  <div class="dots" id="dots"></div>
+
+  <!-- PROGRESSO -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
 </section>
 
 <!-- menu -->
-<section class="menu">
+<section class="menu" id="servicos">
     <h2>Mais que um pet shop, uma missão!</h2>
     <p>A Lume Pet nasceu para unir amor e responsabilidade, oferecendo produtos de qualidade e promovendo o bem-estar animal. Junte-se a nós nessa jornada de cuidado e carinho pelos nossos amigos de quatro patas.</p>
    
@@ -41,19 +77,21 @@
 </section>
 
 <!-- parte para o formulario de adoção-->
-<section class="adote">
+<section class="adote" id="campanha">
     <h2>Adote um Amigo</h2>
     <button>Responda o nosso formulário</button>
 </section>
 
 <!-- doação-->
-<section class="doacao">
+<section class="doacao" id="campanha">
     <h2>Ajude uma Vida hoje</h2>
-    <button>10</button>
-    <button>20</button>
-    <button>50</button>
-    <button>100</button>
-    
+    <div class="valores">
+      <button>R$ 10</button>
+      <button>R$ 20</button>
+      <button>R$ 50</button>
+      <button>R$ 100</button>
+    </div>
+
     <form class="container">
         <h2>faça sua doação</h2>
         <input type="number" placeholder="Valor">
@@ -61,15 +99,18 @@
         <input type="email" placeholder="Email">
 
         <h3>Forma de pagamento</h3>
-        <button>Pix</button>
-        <button>Cartão de Crédito</button>
-        <button>Cartão de Débito</button>
+        <div class="pagamento">
+            <button>Pix</button>
+            <button>Cartão de Crédito</button>
+            <button>Cartão de Débito</button>
+        </div>
+        
 
-        <button>Doar</button>
+        <button type="submit" class="btn-doar">Doar</button>
     </form>
 </section>
 
-<section class="sobre">
+<section class="sobre" id="sobre">
     <h2>Sobre Nós</h2>
     <p>A Lume Pet foi criada com o propósito de ser mais do que um simples pet shop. Nossa missão é promover e concientizar a importancia do cuidado e bem-estar animal, alem de oferecer produtos de alta qualidade para seus pets, buscamos também ser um ponto de apoio para aqueles que desejam adotar e cuidar de um novo amiguinho de quatro patas. Acreditamos que cada animal merece amor, cuidado e um lar, com esse proposito estamos aqui para auxiliar e inspirar a população a fazer a diferença na vida dos animais, seja através de adoções, doações ou simplesmente compartilhando o conhecimento sobre o bem-estar animal. Junte-se a nós nessa jornada de amor e responsabilidade, e vamos juntos conosco construir um mundo melhor para nossos amigos peludos!</p>
 </section>
@@ -101,9 +142,13 @@
     </div>
 </section>
 
-<section class="contato">
+<section class="contato" id="contato">
     <h2>Contato</h2>
-    <p>email contato@lumepet.com.br  ou  telefone (11) 4002-8922</p>
+    <p>
+        Email: <a href="mailto:contato@lumepet.com.br">contato@lumepet.com.br</a>
+        &nbsp;|&nbsp;
+        Telefone: <a href="tel:+551140028922">(11) 4002-8922</a>
+    </p>
 </section>
 
 <script src="js/script.js"></script>
