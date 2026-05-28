@@ -26,8 +26,9 @@ body {
 
 }
 
-.header h1 {
-    color: #FFFEEE;
+.marca img {
+  height: auto;
+  width: 60px;
 }
 
 .header nav ul {
@@ -67,7 +68,7 @@ body {
  
 .slides {
   display: flex;
-  height: 400px;
+  height: 700px;
   transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
   will-change: transform;
 }
