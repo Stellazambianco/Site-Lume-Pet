@@ -49,16 +49,36 @@ body {
     color: #FA8000;
 }
 
-.search-box {
-  display: flex;
-  align-items:center;
-  gap: 8px;
-  border: 1px solid #cde0d3;
-  border-radius: 4px;
-  padding: 6px 12px;
-  background: #f7faf8;
-  
+/*Barra de busca*/  
+.nav-search { position: relative; }
+
+.nav-search input {
+  height: 36px;
+  width: 200px;
+  padding: 0 36px 0 14px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: background 0.2s, width 0.25s;
 }
+
+.nav-search input::placeholder { color: rgba(255,255,255,0.6); }
+.nav-search input:focus { background: rgba(255,255,255,0.25); width: 240px; }
+
+.nav-search i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  pointer-events: none;
+}
+  
+
 .carrossel {
   position: relative;
   width: 100%;
@@ -110,7 +130,7 @@ body {
 .slide-tag {
   display: inline-block;
   background: #2d8bba;
-  color: #fff;
+  color: #FFFEEE;;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -225,21 +245,21 @@ body {
 }
  
 /* ============================================================
-   MENU / MISSÃO
+   SERVIÇO / MISSÃO
    ============================================================ */
-.menu {
+.servico {
   text-align: center;
   padding: 60px 40px;
   background: #fff;
 }
  
-.menu h2 {
+.servico h2 {
   font-size: 28px;
   color: #385A81;
   margin-bottom: 16px;
 }
  
-.menu p {
+.servico p {
   max-width: 680px;
   margin: 0 auto 32px;
   font-size: 16px;
@@ -521,8 +541,8 @@ body {
    CONTATO
    ============================================================ */
 .contato {
-  background: #385A81;
-  color: #fff;
+  background: #FFFEEE;
+  color: #385a81;
   text-align: center;
   padding: 40px;
 }
@@ -534,7 +554,7 @@ body {
  
 .contato p {
   font-size: 15px;
-  color: rgba(255,255,255,0.8);
+  color: #FA8000;
 }
  
 .contato a {
@@ -545,6 +565,14 @@ body {
  
 .contato a:hover {
   text-decoration: underline;
+}
+
+/*RODAPE*/
+.footer {
+  background: #385a81;
+  color:#fff;
+  text-align:center;
+  padding: 20px;
 }
  
 /* ============================================================

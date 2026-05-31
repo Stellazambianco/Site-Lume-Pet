@@ -16,18 +16,20 @@
     <nav>
         <ul>
             <li><a href="#inicio">Início</a></li>
+            <li><a href="#loja">Loja</a></li>
+            <li><a href="#doacao">Doação</a></li>
+            <li><a href="#adote">Adote</a></li>
             <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#campanha">Campanhas</a></li>
+            <li><a href="#avaliacao">Avaliações</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
     </nav>
-    <div class="search-box">
-      <input type="text" class="search-text" placeholder="Pesquisar">
-      <a class="search-btn" >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-          <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5s4.5 2.01 4.5 4.5S12.99 14 10.5 14z"/>
-        </svg>
+   
+    <div class="nav-search">
+  <input type="text" placeholder="Buscar produto..." />
+  <i class="ti ti-search"></i>
+</div>
+
       </a>
     </div>
 </header>
@@ -75,25 +77,25 @@
   </div>
 </section>
 
-<!-- menu -->
-<section class="menu" id="servicos">
+<!-- serviço -->
+<section class="servico">
     <h2>Mais que um pet shop, uma missão!</h2>
     <p>A Lume Pet nasceu para unir amor e responsabilidade, oferecendo produtos de qualidade e promovendo o bem-estar animal. Junte-se a nós nessa jornada de cuidado e carinho pelos nossos amigos de quatro patas.</p>
    
     <div class="botao">
-    <button class="btn-primary">Fazer Doação</button>
-    <button class="btn-seg">Adotar um amigo</button>
+    <button class="btn-primary" id="doacao">Fazer Doação</button> 
+    <button class="btn-seg" id="adote">Adotar um amigo</button>
     </div>
 </section>
 
 <!-- parte para o formulario de adoção-->
-<section class="adote" id="campanha">
+<section class="adote" id="adote">
     <h2>Adote um Amigo</h2>
     <button>Responda o nosso formulário</button>
 </section>
 
 <!-- doação-->
-<section class="doacao" id="campanha">
+<section class="doacao" id="doacao">
     <h2>Ajude uma Vida hoje</h2>
     <div class="valores">
       <button>R$ 10</button>
@@ -120,12 +122,18 @@
     </form>
 </section>
 
+<!--adoção-->
+<section class="adote" id="adote">
+   <h2>Adote um Amigo</h2>
+</section>
+
+
 <section class="sobre" id="sobre">
     <h2>Sobre Nós</h2>
     <p>A Lume Pet foi criada com o propósito de ser mais do que um simples pet shop. Nossa missão é promover e concientizar a importancia do cuidado e bem-estar animal, alem de oferecer produtos de alta qualidade para seus pets, buscamos também ser um ponto de apoio para aqueles que desejam adotar e cuidar de um novo amiguinho de quatro patas. Acreditamos que cada animal merece amor, cuidado e um lar, com esse proposito estamos aqui para auxiliar e inspirar a população a fazer a diferença na vida dos animais, seja através de adoções, doações ou simplesmente compartilhando o conhecimento sobre o bem-estar animal. Junte-se a nós nessa jornada de amor e responsabilidade, e vamos juntos conosco construir um mundo melhor para nossos amigos peludos!</p>
 </section>
 
-<section class="avaliacao">
+<section class="avaliacao" id="avaliacao">
     <h2>Avaliações</h2>
     <p>Feedbacks que ilumina nossa jornada!</p>
     
@@ -160,6 +168,10 @@
         Telefone: <a href="tel:+551140028922">(11) 4002-8922</a>
     </p>
 </section>
+
+<footer class="footer">
+    <p>&copy; 2026 LumePet. Todos os direitos reservados.</p>
+</footer>
 
 <script src="js/script.js"></script>
 
