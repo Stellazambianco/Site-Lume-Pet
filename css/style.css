@@ -304,12 +304,32 @@ body {
   background: #385A81;
   color: #fff;
 }
+
+/*LOJA*/
+.loja {
+  background: #f9f9f9;
+  padding: 60px 40px;
+  text-align: center;
+}
  
+.loja h2 {
+  font-size: 28px;
+  color: #385A81;
+  margin-bottom: 16px;
+}
+
+.loja p {
+  max-width: 680px;
+  margin: 0 auto 32px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+}
 /* ============================================================
    ADOÇÃO
    ============================================================ */
 .adote {
-  background: #FFFEEE;
+  background: #fff;
   text-align: center;
   padding: 50px 40px;
 }
@@ -338,14 +358,14 @@ body {
    DOAÇÃO
    ============================================================ */
 .doacao {
-  background: #fff;
+  background: #2d8bba;
   padding: 60px 40px;
   text-align: center;
 }
  
 .doacao > h2 {
   font-size: 26px;
-  color: #385A81;
+  color: #FA8000;
   margin-bottom: 24px;
 }
  
@@ -460,7 +480,7 @@ body {
    SOBRE
    ============================================================ */
 .sobre {
-  background: #f0f7f2;
+  background: #f9f9f9;
   padding: 60px 40px;
   text-align: center;
 }
@@ -541,7 +561,7 @@ body {
    CONTATO
    ============================================================ */
 .contato {
-  background: #FFFEEE;
+  background: #2d8bba;
   color: #385a81;
   text-align: center;
   padding: 40px;
