@@ -241,4 +241,96 @@ filtrarProdutos();
   resetAuto();
 })();
 
+//Doação
+let metodoDoacao = 'pix';
+
+function selecionarValor(valor) {
+  document.getElementById('doacao-valor').value = valor;
+  document.querySelectorAll('.btn-valor').forEach(btn => btn.classList.remove('ativo'));
+  event.target.classList.add('ativo');
+}
+
+function limparBotoesValor() {
+  document.querySelectorAll('.btn-valor').forEach(btn => btn.classList.remove('ativo'));
+}
+
+function abrirPagamentoDoacao() {
+  const email = document.getElementById('doacao-email').value.trim();
+  const valor = document.getElementById('doacao-valor').value.trim();
+  let valido = true;
+
+  // Limpa erros
+  document.getElementById('erro-email').textContent = '';
+  document.getElementById('erro-valor').textContent = '';
+
+  // Valida email
+  if (!email || !email.includes('@')) {
+    document.getElementById('erro-email').textContent = 'Por favor, informe um e-mail válido.';
+    valido = false;
+  }
+
+  // Valida valor
+  if (!valor || parseFloat(valor) <= 0) {
+    document.getElementById('erro-valor').textContent = 'Por favor, informe um valor para a doação.';
+    valido = false;
+  }
+
+  if (!valido) return;
+
+  // Preenche resumo
+  const nome = document.getElementById('doacao-nome').value.trim();
+  document.getElementById('doacaoResumo').innerHTML = `
+    ${nome ? `<p><strong>Nome:</strong> ${nome}</p>` : ''}
+    <p><strong>E-mail:</strong> ${email}</p>
+    <p><strong>Valor:</strong> R$ ${parseFloat(valor).toFixed(2).replace('.', ',')}</p>
+  `;
+
+  selecionarMetodo('pix');
+  document.getElementById('doacaoOverlay').classList.add('aberto');
+}
+
+function fecharPagamentoDoacao() {
+  document.getElementById('doacaoOverlay').classList.remove('aberto');
+}
+
+function selecionarMetodo(metodo) {
+  metodoDoacao = metodo;
+
+  document.querySelectorAll('.btn-metodo').forEach(btn => btn.classList.remove('ativo'));
+  document.getElementById('btn-' + metodo).classList.add('ativo');
+
+  document.getElementById('detalhe-pix').style.display = metodo === 'pix' ? 'flex' : 'none';
+  document.getElementById('detalhe-cartao').style.display = metodo !== 'pix' ? 'flex' : 'none';
+}
+
+function mascaraCartao(input) {
+  input.value = input.value.replace(/\D/g, '').replace(/(\d{4})/g, '$1 ').trim().slice(0, 19);
+}
+
+function mascaraValidade(input) {
+  input.value = input.value.replace(/\D/g, '').replace(/(\d{2})(\d)/, '$1/$2').slice(0, 5);
+}
+
+function confirmarDoacao() {
+  const nomes = { pix: 'PIX', credito: 'Cartão de Crédito', debito: 'Cartão de Débito' };
+
+  if (metodoDoacao !== 'pix') {
+    const campos = document.querySelectorAll('#detalhe-cartao input');
+    for (let campo of campos) {
+      if (!campo.value.trim()) {
+        alert('Por favor, preencha todos os dados do cartão.');
+        return;
+      }
+    }
+  }
+
+  alert(`✅ Doação confirmada via ${nomes[metodoDoacao]}!\nObrigado pelo seu apoio! 🐾`);
+  fecharPagamentoDoacao();
+
+  // Limpa o formulário
+  document.getElementById('doacao-nome').value = '';
+  document.getElementById('doacao-email').value = '';
+  document.getElementById('doacao-valor').value = '';
+  document.querySelectorAll('.btn-valor').forEach(btn => btn.classList.remove('ativo'));
+}
 
