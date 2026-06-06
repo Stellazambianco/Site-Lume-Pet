@@ -11,7 +11,7 @@ body {
     
 }
 
-/* cabeçalho */
+/* cabeçalho/menu */
 .header {
     display: flex;
     justify-content: space-between;
@@ -26,7 +26,7 @@ body {
 
 }
 
-.marca img {
+.header .logo img {
   height: auto;
   width: 60px;
 }
@@ -49,36 +49,253 @@ body {
     color: #FA8000;
 }
 
-/*Barra de busca*/  
-.nav-search { position: relative; }
+/* CARRINHO - ÍCONE */
+.carrinho-icon {
+  font-size: 20px;
+  position: relative;
+}
 
-.nav-search input {
-  height: 36px;
-  width: 200px;
-  padding: 0 36px 0 14px;
-  border-radius: 999px;
+.carrinho-count {
+  background: #FA8000;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 1px 6px;
+  position: relative;
+  top: -8px;
+}
+
+/* CARRINHO - PAINEL */
+.carrinho-painel {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: #FFFEEE;
+  border: 2px solid #385A81;
+  border-radius: 12px;
+  padding: 20px;
+  width: 320px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.carrinho-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.carrinho-header h3 {
+  color: #385A81;
+  font-size: 17px;
+}
+
+.carrinho-fechar {
+  background: none;
   border: none;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  font-size: 14px;
-  outline: none;
-  transition: background 0.2s, width 0.25s;
-}
-
-.nav-search input::placeholder { color: rgba(255,255,255,0.6); }
-.nav-search input:focus { background: rgba(255,255,255,0.25); width: 240px; }
-
-.nav-search i {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(255,255,255,0.7);
   font-size: 16px;
-  pointer-events: none;
+  cursor: pointer;
+  color: #385A81;
 }
-  
 
+/* LISTA DE ITENS */
+#carrinho-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+}
+
+#carrinho-lista li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 13px;
+  color: #333;
+  gap: 6px;
+}
+
+.carrinho-vazio {
+  justify-content: center !important;
+  color: #999 !important;
+}
+
+/* CONTROLE DE QUANTIDADE */
+.item-qtd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-qtd button {
+  background: #385A81;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.item-qtd span {
+  font-weight: bold;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* BOTÃO REMOVER */
+.item-remover {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* RODAPÉ DO CARRINHO */
+.carrinho-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.carrinho-total {
+  font-size: 15px;
+  color: #385A81;
+  text-align: right;
+}
+
+.btn-esvaziar {
+  background: none;
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 20px;
+  padding: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-esvaziar:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-pagar {
+  background: #385A81;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-pagar:hover {
+  background: #FA8000;
+}
+
+/* MODAL PAGAMENTO */
+.pagamento-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagamento-overlay.aberto {
+  display: flex;
+}
+
+.pagamento-modal {
+  background: #FFFEEE;
+  border-radius: 14px;
+  padding: 28px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.pagamento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pagamento-header h3 {
+  color: #385A81;
+  font-size: 18px;
+}
+
+.pagamento-header button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #385A81;
+}
+
+.pagamento-resumo {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #333;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.pagamento-metodos {
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pagamento-metodos label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  width: 100%;
+  background: #385A81;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-confirmar:hover {
+  background: #FA8000;
+}
+
+/* CARROSSEL */
 .carrossel {
   position: relative;
   width: 100%;
@@ -244,9 +461,7 @@ body {
   transition: width 0.1s linear;
 }
  
-/* ============================================================
-   SERVIÇO / MISSÃO
-   ============================================================ */
+/* SERVIÇO / MISSÃO */
 .servico {
   text-align: center;
   padding: 60px 40px;
@@ -325,9 +540,121 @@ body {
   line-height: 1.7;
   color: #555;
 }
-/* ============================================================
-   ADOÇÃO
-   ============================================================ */
+
+/* PESQUISA */
+.loja-pesquisa {
+  margin-bottom: 24px;
+}
+
+.loja-pesquisa input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 18px;
+  border: 2px solid #385A81;
+  border-radius: 30px;
+  font-size: 15px;
+  outline: none;
+  color: #333;
+  background: #fff;
+}
+
+.loja-pesquisa input:focus {
+  border-color: #FA8000;
+}
+
+/* CATEGORIAS */
+.loja-categorias {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.categoria-btn {
+  padding: 8px 20px;
+  border: 2px solid #385A81;
+  border-radius: 30px;
+  background: transparent;
+  color: #385A81;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.categoria-btn:hover,
+.categoria-btn.ativo {
+  background: #385A81;
+  color: #fff;
+}
+
+/* GRADE DE PRODUTOS */
+.loja-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* CARD DO PRODUTO */
+.produto-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.produto-card:hover {
+  box-shadow: 0 6px 18px rgba(56, 90, 129, 0.2);
+}
+
+.produto-img {
+  font-size: 48px;
+}
+
+.produto-card h3 {
+  font-size: 15px;
+  color: #385A81;
+  font-weight: 700;
+}
+
+.produto-card p {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+.produto-preco {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FA8000;
+}
+
+.produto-card button {
+  margin-top: auto;
+  padding: 8px 14px;
+  background: #385A81;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.produto-card button:hover {
+  background: #FA8000;
+}
+
+/* ADOÇÃO */
 .adote {
   background: #fff;
   text-align: center;
@@ -354,9 +681,7 @@ body {
  
 .adote button:hover { background: #385A81; }
  
-/* ============================================================
-   DOAÇÃO
-   ============================================================ */
+/* DOAÇÃO */
 .doacao {
   background: #2d8bba;
   padding: 60px 40px;
@@ -368,6 +693,7 @@ body {
   color: #FA8000;
   margin-bottom: 24px;
 }
+
  
 .valores {
   display: flex;
@@ -378,7 +704,7 @@ body {
 }
  
 .btn-valor {
-  background: #e8f5ee;
+  background: #FFFEEE;
   color: #385A81;
   border: 2px solid #2d8bba;
   padding: 10px 24px;
@@ -439,6 +765,7 @@ body {
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  justify-content: center;
 }
  
 .btn-pag {
@@ -476,9 +803,7 @@ body {
  
 .btn-doar:hover { background: #385A81; }
  
-/* ============================================================
-   SOBRE
-   ============================================================ */
+/* SOBRE */
 .sobre {
   background: #f9f9f9;
   padding: 60px 40px;
@@ -499,9 +824,7 @@ body {
   color: #555;
 }
  
-/* ============================================================
-   AVALIAÇÕES
-   ============================================================ */
+/* AVALIAÇÕES */
 .avaliacao {
   background: #fff;
   padding: 60px 40px;
@@ -557,9 +880,7 @@ body {
   color: #999;
 }
  
-/* ============================================================
-   CONTATO
-   ============================================================ */
+/* CONTATO */
 .contato {
   background: #2d8bba;
   color: #385a81;
@@ -595,9 +916,7 @@ body {
   padding: 20px;
 }
  
-/* ============================================================
-   RESPONSIVIDADE
-   ============================================================ */
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
