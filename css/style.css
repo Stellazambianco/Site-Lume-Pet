@@ -8,6 +8,7 @@ body {
     font-family: poppins, sans-serif;
     background: white;
     color: #333;
+    padding-top: 69px;
     
 }
 
@@ -17,13 +18,15 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: #385A81;
-    border-bottom: 2px solid #333;
+    background-color: #fffeeebc;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, #FA8000, #2b8abad2);
+    border-image-slice: 1;
     position: fixed;
     width: 100%;
     top: 0; 
     z-index: 1000;
-
+    backdrop-filter: blur(2px);
 }
 
 .header .logo img {
@@ -38,7 +41,7 @@ body {
 }
 
 .header nav ul li a {
-    color: #FFFEEE;
+    color: #161510;
     margin-left: 25px;
     text-decoration: none;
     font-weight: 500;
@@ -299,8 +302,10 @@ body {
 .carrossel {
   position: relative;
   width: 100%;
+  height: auto;
   overflow: hidden;
   background: none;
+
 }
  
 .slides {
@@ -360,8 +365,20 @@ body {
   border-color: #2d8bba;
 }
  
-.nav-prev { left: 16px; }
-.nav-next { right: 16px; }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+.nav-prev { 
+  left: 16px;
+transform: rotate(-90deg); }
+.nav-next { 
+  right: 16px;
+transform: rotate(90deg); }
  
 /* Dots */
 .dots {
@@ -1040,10 +1057,11 @@ body {
  
 /* CONTATO */
 .contato {
-  background: #2d8bba;
-  color: #385a81;
+  background: #2b8bba;
+  color: #fffaaa;
   text-align: center;
   padding: 40px;
+  
 }
  
 .contato h2 {
@@ -1053,11 +1071,11 @@ body {
  
 .contato p {
   font-size: 15px;
-  color: #FA8000;
+  color: #fffaaa;
 }
  
 .contato a {
-  color: #FA8000;
+  color: #fffaaa;
   text-decoration: none;
   font-weight: 600;
 }
@@ -1072,6 +1090,7 @@ body {
   color:#fff;
   text-align:center;
   padding: 20px;
+  
 }
  
 /* RESPONSIVIDADE */
