@@ -27,6 +27,13 @@
             <li><a href="#avaliacao">Avaliações</a></li>
             <li><a href="#contato">Contato</a></li>
 
+            <!-- USUÁRIO / LOGIN -->
+            <li>
+                <a href="#" class="usuario-icon" onclick="toggleLogin(event)" id="usuarioLink">
+                    <span id="usuarioNome">Entrar</span>
+                </a>
+            </li>
+
             <!-- CARRINHO -->
       <li>
         <a href="#" class="carrinho-icon" onclick="toggleCarrinho(event)">
@@ -40,6 +47,57 @@
       </a>
     </div>
 </header>
+
+<!-- MODAL DE LOGIN / CADASTRO -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-modal">
+    <div class="login-header">
+      <h3 id="loginTitulo">Entrar</h3>
+      <button onclick="fecharLogin()">✕</button>
+    </div>
+
+    <div class="login-abas">
+      <button class="aba-btn ativo" id="aba-login" onclick="mudarAba('login')">Entrar</button>
+      <button class="aba-btn" id="aba-cadastro" onclick="mudarAba('cadastro')">Cadastrar</button>
+    </div>
+
+    <!-- FORMULÁRIO DE LOGIN -->
+    <div class="login-form" id="form-login">
+      <div class="campo-grupo">
+        <label>E-mail</label>
+        <input type="email" id="login-email" placeholder="seu@email.com">
+      </div>
+      <div class="campo-grupo">
+        <label>Senha</label>
+        <input type="password" id="login-senha" placeholder="Sua senha">
+      </div>
+      <span class="erro" id="erro-login"></span>
+      <button class="btn-confirmar-login" onclick="fazerLogin()">Entrar</button>
+    </div>
+
+    <!-- FORMULÁRIO DE CADASTRO -->
+    <div class="login-form" id="form-cadastro" style="display:none">
+      <div class="campo-grupo">
+        <label>Nome</label>
+        <input type="text" id="cad-nome" placeholder="Seu nome completo">
+      </div>
+      <div class="campo-grupo">
+        <label>E-mail</label>
+        <input type="email" id="cad-email" placeholder="seu@email.com">
+      </div>
+      <div class="campo-grupo">
+        <label>Senha</label>
+        <input type="password" id="cad-senha" placeholder="Crie uma senha (mín. 6 caracteres)">
+      </div>
+      <div class="campo-grupo">
+        <label>Confirmar senha</label>
+        <input type="password" id="cad-senha2" placeholder="Repita a senha">
+      </div>
+      <span class="erro" id="erro-cadastro"></span>
+      <button class="btn-confirmar-login" onclick="fazerCadastro()">Criar conta</button>
+    </div>
+  </div>
+</div>
 
 <!-- PAINEL DO CARRINHO -->
 <div class="carrinho-painel" id="carrinhoPainel">
@@ -69,11 +127,37 @@
 
     <div class="pagamento-resumo" id="pagamentoResumo"></div>
 
+    <!-- CEP / FRETE -->
+    <div class="pagamento-cep">
+      <p><strong>📍 Endereço de entrega</strong></p>
+      <div class="cep-linha">
+        <input type="text" id="cepInput" placeholder="Digite seu CEP" maxlength="9" oninput="mascaraCep(this)">
+        <button type="button" onclick="calcularFrete()">Calcular</button>
+      </div>
+      <div id="cepResultado"></div>
+
+      <div class="endereco-detalhes" id="enderecoDetalhes" style="display:none">
+        <div class="endereco-linha">
+          <input type="text" id="numeroCasa" placeholder="Número *">
+          <input type="text" id="complemento" placeholder="Complemento (opcional)">
+        </div>
+      </div>
+    </div>
+
+    <!-- CUPOM -->
+    <div class="pagamento-cupom">
+      <p><strong>🎟️ Cupom de desconto</strong></p>
+      <div class="cupom-linha">
+        <input type="text" id="cupomInput" placeholder="Digite seu cupom">
+        <button type="button" onclick="aplicarCupom()">Aplicar</button>
+      </div>
+      <div id="cupomResultado"></div>
+    </div>
+
     <div class="pagamento-metodos">
       <p><strong>Forma de pagamento:</strong></p>
-      <label><input type="radio" name="pagamento" value="pix" checked> PIX</label>
-      <label><input type="radio" name="pagamento" value="cartao"> Cartão de crédito</label>
-      <label><input type="radio" name="pagamento" value="boleto"> Boleto</label>
+      <label><input type="radio" name="pagamento" value="pix" checked onchange="atualizarMetodoPagamento()"> PIX</label>
+      <label><input type="radio" name="pagamento" value="cartao" onchange="atualizarMetodoPagamento()"> Cartão (Crédito ou Débito)</label>
     </div>
 
     <div id="pagamento-extra"></div>
