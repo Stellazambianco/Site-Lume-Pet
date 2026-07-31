@@ -1,8 +1,5 @@
-// =====================================================
 // LOGIN / CADASTRO
-// (armazenamento local no navegador — apenas para demonstração,
-// sem um backend real as senhas NÃO ficam protegidas de verdade)
-// =====================================================
+// (armazenamento local no navegador — apenas para demonstração)
 
 let usuarioLogado = null;
 
@@ -145,9 +142,9 @@ function fazerCadastro() {
 document.addEventListener('DOMContentLoaded', atualizarUsuarioUI);
 
 
-// =====================================================
+
 // CARRINHO
-// =====================================================
+
 
 let itensCarrinho = [];
 
@@ -157,9 +154,7 @@ function toggleCarrinho(event) {
   painel.style.display = painel.style.display === 'block' ? 'none' : 'block';
 }
 
-// O carrinho só fecha quando o usuário clica no ícone do carrinho ou no
-// botão "✕" — adicionar produtos ou clicar em qualquer outro lugar da
-// página não fecha o painel automaticamente.
+// O carrinho só fecha quando o usuário clicar para fechar
 
 function adicionarAoCarrinho(nome, preco) {
   const precoNum = parseFloat(preco.replace(',', '.'));
@@ -224,9 +219,9 @@ function atualizarCarrinho() {
 }
 
 
-// =====================================================
+
 // PAGAMENTO (com CEP/frete e cupom)
-// =====================================================
+
 
 let freteAtual = 0;
 let cepValidado = false;
@@ -437,7 +432,7 @@ function renderPix() {
   return `
     <div class="pix-bloco">
       <p class="pix-aviso">⏱️ Pague em até <strong id="pixTempo">15:00</strong> ou o pedido será cancelado automaticamente.</p>
-      <div class="pix-qr">📱</div>
+      <div class="pix-qr"></div>
       <p>Código Pix Copia e Cola:</p>
       <input type="text" id="pixCodigoInput" value="${pixCodigo}" readonly onclick="this.select()">
       <small>Toque no código para selecionar e copiar</small>
@@ -564,9 +559,8 @@ function finalizarPedido() {
 }
 
 
-// =====================================================
 // LOJA - FILTROS (pesquisa em todas as categorias)
-// =====================================================
+
 
 let categoriaAtiva = 'geral';
 
@@ -612,9 +606,8 @@ function filtrarProdutos() {
 filtrarProdutos();
 
 
-// =====================================================
 // CARROSSEL
-// =====================================================
+
 (function () {
   const slidesEl   = document.getElementById('slides');
   const dotsWrap   = document.getElementById('dots');
@@ -630,7 +623,7 @@ filtrarProdutos();
   let progressTimer = null;
   let progressVal  = 0;
 
-  /* ── Criar dots dinamicamente ── */
+//  Criar dots dinamicamente 
   for (let i = 0; i < total; i++) {
     const d = document.createElement('button');
     d.className = 'dot' + (i === 0 ? ' active' : '');
@@ -639,7 +632,7 @@ filtrarProdutos();
     dotsWrap.appendChild(d);
   }
 
-  /* ── Ir para slide N ── */
+  // Ir para slide N 
   function goTo(n) {
     current = (n + total) % total;
     slidesEl.style.transform = 'translateX(-' + (current * 100) + '%)';
@@ -647,14 +640,14 @@ filtrarProdutos();
     resetAuto();
   }
 
-  /* ── Atualizar dots ── */
+  // Atualizar dots 
   function updateDots() {
     document.querySelectorAll('.dot').forEach(function (d, i) {
       d.classList.toggle('active', i === current);
     });
   }
 
-  /* ── Barra de progresso ── */
+  // Barra de progresso
   function startProgress() {
     progressVal = 0;
     clearInterval(progressTimer);
@@ -665,7 +658,7 @@ filtrarProdutos();
     }, 100);
   }
 
-  /* ── Autoplay ── */
+  // ─ Autoplay 
   function resetAuto() {
     clearInterval(autoTimer);
     clearInterval(progressTimer);
@@ -675,7 +668,7 @@ filtrarProdutos();
     }, INTERVAL);
   }
 
-  /* ── Botões de seta ── */
+  //Botões de seta 
   document.getElementById('prev').addEventListener('click', function () {
     goTo(current - 1);
   });
@@ -683,7 +676,7 @@ filtrarProdutos();
     goTo(current + 1);
   });
 
-  /* ── Pausar no hover ── */
+  //Pausar no hover 
   var carouselEl = document.querySelector('.carrossel');
   carouselEl.addEventListener('mouseenter', function () {
     clearInterval(autoTimer);
@@ -691,7 +684,7 @@ filtrarProdutos();
   });
   carouselEl.addEventListener('mouseleave', resetAuto);
 
-  /* ── Swipe (touch) — recalibrado para não conflitar com o scroll vertical ── */
+  //Swipe (touch) — recalibrado para não conflitar com o scroll vertical
   var touchStartX = null;
   var touchStartY = null;
 
@@ -714,13 +707,13 @@ filtrarProdutos();
     touchStartY = null;
   });
 
-  /* ── Teclado ── */
+  // ── Teclado ──
   document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft')  goTo(current - 1);
     if (e.key === 'ArrowRight') goTo(current + 1);
   });
 
-  /* ── Recalcula a posição ao girar a tela / redimensionar ── */
+  // ── Recalcula a posição ao girar a tela / redimensionar ──
   window.addEventListener('resize', function () {
     slidesEl.style.transition = 'none';
     slidesEl.style.transform = 'translateX(-' + (current * 100) + '%)';
@@ -729,7 +722,7 @@ filtrarProdutos();
     });
   });
 
-  /* ── Iniciar ── */
+  // ── Iniciar ──
   resetAuto();
 })();
 
