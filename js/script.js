@@ -607,14 +607,14 @@ function filtrarProdutos() {
     vazio.style.display = produtosVisiveis > 0 ? 'none' : 'flex';
   }
     card.style.display = passaCategoria && passaPesquisa ? 'flex' : 'none';
-  });
+  };
 
   // enquanto o usuário pesquisa, os botões de categoria ficam "desativados"
   // visualmente, já que a busca abrange todas as categorias
   document.querySelectorAll('.categoria-btn').forEach(btn => {
     btn.classList.toggle('desativado', !!texto);
   });
-}
+
 
 // Inicia mostrando o Geral
 filtrarProdutos();
