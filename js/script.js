@@ -575,7 +575,9 @@ function filtrarProdutos() {
   const campoPesquisa = document.getElementById('campoPesquisa');
   const texto = campoPesquisa.value.toLowerCase().trim();
   const cards = document.querySelectorAll('.produto-card');
+  const vazio = document.getElementById('lojaVazio');
   const geralProdutos = ['shampoo natural', 'ração premium', 'bolinha de borracha', 'cama pet'];
+  let produtosVisiveis = 0;
 
   cards.forEach(card => {
     const categoria = card.dataset.categoria;
@@ -592,6 +594,18 @@ function filtrarProdutos() {
         : categoria === categoriaAtiva;
     }
 
+    const passaPesquisa = nome.includes(texto);
+    const deveMostrar = passaCategoria && passaPesquisa;
+
+    card.classList.toggle('oculto', !deveMostrar);
+    card.classList.toggle('visivel', deveMostrar);
+
+    if (deveMostrar) produtosVisiveis++;
+  });
+
+  if (vazio) {
+    vazio.style.display = produtosVisiveis > 0 ? 'none' : 'flex';
+  }
     card.style.display = passaCategoria && passaPesquisa ? 'flex' : 'none';
   });
 

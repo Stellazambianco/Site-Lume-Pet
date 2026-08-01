@@ -212,7 +212,7 @@ pets
    
     <div class="botao">
     <button class="btn-primary">Fazer Doação</button> 
-    <button class="btn-seg">Adotar um pet</button>
+    <button class="btn-seg">Adotar um Pet</button>
     </div>    
 </section>
 
@@ -238,6 +238,15 @@ pets
   <!-- GRADE DE PRODUTOS -->
   <div class="loja-grade" id="lojaGrade">
 
+    <div class="loja-vazio" id="lojaVazio" style="display: none;">
+      <h3>Nenhum produto encontrado</h3>
+      <p>Não encontramos itens com essa busca. Tente outra palavra ou confira as categorias.</p>
+      <div class="loja-sugestoes">
+        <span>💡 Sugestões que você pode gostar</span>
+        <p>Shampoo Hidratante, Condicionador Hidratante ou Cama Pet</p>
+      </div>
+    </div>
+
     <!-- HIGIENE -->
     <div class="produto-card" data-categoria="higiene" data-nome="shampoo natural">
       <div class="produto-img">
@@ -260,7 +269,9 @@ pets
     </div>
 
     <div class="produto-card" data-categoria="higiene" data-nome="escova de dentes pet">
-      <div class="produto-img"></div>
+      <div class="produto-img">
+        <img src="css/imagem css/kit higiene.jpg" alt="Escova de Dentes Pet">
+      </div>
       <h3>Escova de Dentes Pet</h3>
       <p>Higiene bucal fácil e segura.</p>
       <span class="produto-preco">R$ 19,90</span>
@@ -310,7 +321,9 @@ pets
 
     <!-- BRINQUEDOS -->
     <div class="produto-card" data-categoria="brinquedo" data-nome="bolinha de borracha">
-      <div class="produto-img"></div>
+      <div class="produto-img">
+        <img src="css/imagem css/bolinhapet.jpg" alt="Bolinha de Borracha">
+      </div>
       <h3>Bolinha de Borracha</h3>
       <p>Resistente e divertida para brincar.</p>
       <span class="produto-preco">R$ 12,90</span>
