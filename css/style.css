@@ -24,7 +24,7 @@ section {
     min-height: 84px;
     background-color: #eefdffbc;
     border-bottom: 3px solid transparent;
-    border-image: linear-gradient(to right, #FA8000, #2b8abad2);
+    border-image: linear-gradient(to right, #fa8, #fa8);
     border-image-slice: 1;
     position: fixed;
     width: 100%;
@@ -722,7 +722,7 @@ transform: translateY(-50%) rotate(90deg); }
   transform: scale(1.35);
 }
  
-/* Barra de progresso */
+/* Barra de progresso CARROSSEL*/
 .progress-bar {
   height: 3px;
   background: rgba(255,255,255,0.08);
@@ -731,11 +731,11 @@ transform: translateY(-50%) rotate(90deg); }
  
 .progress-fill {
   height: 100%;
-  background: #2d8bba;
-  transition: width 0.1s linear;
+  background: linear-gradient(to right, #2d8bbac8, #fa810073);
+  transition: width 0.2s linear;
 }
  
-/* SERVIÇO / MISSÃO */
+/* SERVIÇO / MISSÃO / BOTÕES DE FAZER UMA DOAÇÃO OU ADOÇÃO NO INÍCIO */
 .servico {
   text-align: center;
   padding: 60px 40px;
@@ -775,7 +775,11 @@ transform: translateY(-50%) rotate(90deg); }
   transition: background 0.2s;
 }
  
-.btn-primary:hover { background: #385A81; }
+.btn-primary:hover { 
+  background: #385A81;
+  color: #fff;
+  transform: translateY(-1px);
+}
  
 .btn-seg {
   background: transparent;
@@ -792,6 +796,7 @@ transform: translateY(-50%) rotate(90deg); }
 .btn-seg:hover {
   background: #385A81;
   color: #fff;
+  transform: translateY(-1px);
 }
 
 /*LOJA*/
