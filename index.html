@@ -43,9 +43,6 @@
 
         </ul>
     </nav>
-
-      </a>
-    </div>
 </header>
 
 <!-- MODAL DE LOGIN / CADASTRO -->
@@ -174,7 +171,7 @@
     <div class="slide">
       <div class="slide-bg" ></div>
       <a href="#loja">
-      <img src="css/imagem css/banner doaçao.png" alt="banner 1" class="slide-bg">
+      <img src="css/imagem css/banner2.jpeg" alt="banner 1" class="slide-bg">
       </a>
     </div>
 
@@ -223,16 +220,16 @@ pets
 
   <!-- BARRA DE PESQUISA -->
   <div class="loja-pesquisa">
-    <input type="text" id="campoPesquisa" placeholder="🔍 Pesquisar produto..." oninput="filtrarProdutos()">
+    <input type="text" id="campoPesquisa" placeholder="🔍 Digite o que seu pet precisa..." oninput="filtrarProdutos()">
   </div>
 
   <!-- CATEGORIAS -->
   <div class="loja-categorias">
-    <button class="categoria-btn ativo" onclick="filtrarCategoria('geral')">Geral</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('higiene')">Higiene</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('alimento')">Alimento</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('brinquedo')">Brinquedos</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('conforto')">Conforto</button>
+    <button class="categoria-btn ativo" onclick="filtrarCategoria('geral', event)">Geral</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('higiene', event)">Higiene</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('alimento', event)">Alimento</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('brinquedo', event)">Brinquedos</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('conforto', event)">Conforto</button>
   </div>
 
   <!-- GRADE DE PRODUTOS -->
@@ -455,10 +452,10 @@ pets
       <div class="campo-grupo">
         <label>Valor da doação <span class="obrigatorio">*</span></label>
         <div class="valores-rapidos">
-          <button type="button" class="btn-valor" onclick="selecionarValor(10)">R$ 10</button>
-          <button type="button" class="btn-valor" onclick="selecionarValor(25)">R$ 25</button>
-          <button type="button" class="btn-valor" onclick="selecionarValor(50)">R$ 50</button>
-          <button type="button" class="btn-valor" onclick="selecionarValor(100)">R$ 100</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(10, event)">R$ 10</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(25, event)">R$ 25</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(50, event)">R$ 50</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(100, event)">R$ 100</button>
         </div>
         <input type="number" id="doacao-valor" placeholder="Ou digite outro valor (R$)" min="1" oninput="limparBotoesValor()">
         <span class="erro" id="erro-valor"></span>

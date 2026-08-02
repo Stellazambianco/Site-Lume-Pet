@@ -564,10 +564,12 @@ function finalizarPedido() {
 
 let categoriaAtiva = 'geral';
 
-function filtrarCategoria(categoria) {
+function filtrarCategoria(categoria, event) {
   categoriaAtiva = categoria;
   document.querySelectorAll('.categoria-btn').forEach(btn => btn.classList.remove('ativo'));
-  event.target.classList.add('ativo');
+  if (event && event.currentTarget) {
+    event.currentTarget.classList.add('ativo');
+  }
   filtrarProdutos();
 }
 
@@ -581,7 +583,7 @@ function filtrarProdutos() {
 
   cards.forEach(card => {
     const categoria = card.dataset.categoria;
-    const nome = card.dataset.nome;
+    const nome = card.dataset.nome.toLowerCase();
     const passaPesquisa = nome.includes(texto);
 
     let passaCategoria;
@@ -594,11 +596,11 @@ function filtrarProdutos() {
         : categoria === categoriaAtiva;
     }
 
-    const passaPesquisa = nome.includes(texto);
     const deveMostrar = passaCategoria && passaPesquisa;
 
     card.classList.toggle('oculto', !deveMostrar);
     card.classList.toggle('visivel', deveMostrar);
+    card.style.display = deveMostrar ? 'flex' : 'none';
 
     if (deveMostrar) produtosVisiveis++;
   });
@@ -606,14 +608,11 @@ function filtrarProdutos() {
   if (vazio) {
     vazio.style.display = produtosVisiveis > 0 ? 'none' : 'flex';
   }
-    card.style.display = passaCategoria && passaPesquisa ? 'flex' : 'none';
-  };
 
-  // enquanto o usuário pesquisa, os botões de categoria ficam "desativados"
-  // visualmente, já que a busca abrange todas as categorias
   document.querySelectorAll('.categoria-btn').forEach(btn => {
     btn.classList.toggle('desativado', !!texto);
   });
+}
 
 
 // Inicia mostrando o Geral
@@ -743,10 +742,12 @@ filtrarProdutos();
 //Doação
 let metodoDoacao = 'pix';
 
-function selecionarValor(valor) {
+function selecionarValor(valor, event) {
   document.getElementById('doacao-valor').value = valor;
   document.querySelectorAll('.btn-valor').forEach(btn => btn.classList.remove('ativo'));
-  event.target.classList.add('ativo');
+  if (event && event.currentTarget) {
+    event.currentTarget.classList.add('ativo');
+  }
 }
 
 function limparBotoesValor() {
