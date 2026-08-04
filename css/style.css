@@ -16,6 +16,10 @@ section {
 }
 
 /* cabeçalho/menu */
+body {
+  padding-top: 80px;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
