@@ -27,6 +27,13 @@
             <li><a href="#avaliacao">Avaliações</a></li>
             <li><a href="#contato">Contato</a></li>
 
+            <!-- USUÁRIO / LOGIN -->
+            <li>
+                <a href="#" class="usuario-icon" onclick="toggleLogin(event)" id="usuarioLink">
+                    <span id="usuarioNome">Entrar</span>
+                </a>
+            </li>
+
             <!-- CARRINHO -->
       <li>
         <a href="#" class="carrinho-icon" onclick="toggleCarrinho(event)">
@@ -36,10 +43,58 @@
 
         </ul>
     </nav>
-
-      </a>
-    </div>
 </header>
+
+<!-- MODAL DE LOGIN / CADASTRO -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-modal">
+    <div class="login-header">
+      <h3 id="loginTitulo">Entrar</h3>
+      <button onclick="fecharLogin()">✕</button>
+    </div>
+
+    <div class="login-abas">
+      <button class="aba-btn ativo" id="aba-login" onclick="mudarAba('login')">Entrar</button>
+      <button class="aba-btn" id="aba-cadastro" onclick="mudarAba('cadastro')">Cadastrar</button>
+    </div>
+
+    <!-- FORMULÁRIO DE LOGIN -->
+    <div class="login-form" id="form-login">
+      <div class="campo-grupo">
+        <label>E-mail</label>
+        <input type="email" id="login-email" placeholder="seu@email.com">
+      </div>
+      <div class="campo-grupo">
+        <label>Senha</label>
+        <input type="password" id="login-senha" placeholder="Sua senha">
+      </div>
+      <span class="erro" id="erro-login"></span>
+      <button class="btn-confirmar-login" onclick="fazerLogin()">Entrar</button>
+    </div>
+
+    <!-- FORMULÁRIO DE CADASTRO -->
+    <div class="login-form" id="form-cadastro" style="display:none">
+      <div class="campo-grupo">
+        <label>Nome</label>
+        <input type="text" id="cad-nome" placeholder="Seu nome completo">
+      </div>
+      <div class="campo-grupo">
+        <label>E-mail</label>
+        <input type="email" id="cad-email" placeholder="seu@email.com">
+      </div>
+      <div class="campo-grupo">
+        <label>Senha</label>
+        <input type="password" id="cad-senha" placeholder="Crie uma senha (mín. 6 caracteres)">
+      </div>
+      <div class="campo-grupo">
+        <label>Confirmar senha</label>
+        <input type="password" id="cad-senha2" placeholder="Repita a senha">
+      </div>
+      <span class="erro" id="erro-cadastro"></span>
+      <button class="btn-confirmar-login" onclick="fazerCadastro()">Criar conta</button>
+    </div>
+  </div>
+</div>
 
 <!-- PAINEL DO CARRINHO -->
 <div class="carrinho-painel" id="carrinhoPainel">
@@ -54,8 +109,8 @@
 
   <div class="carrinho-rodape">
     <p class="carrinho-total">Total: <strong id="carrinho-valor">R$ 0,00</strong></p>
-    <button class="btn-esvaziar" onclick="esvaziarCarrinho()">🗑️ Esvaziar</button>
-    <button class="btn-pagar" onclick="abrirPagamento()">💳 Finalizar compra</button>
+    <button class="btn-esvaziar" onclick="esvaziarCarrinho()"> Esvaziar</button>
+    <button class="btn-pagar" onclick="abrirPagamento()"> Finalizar compra</button>
   </div>
 </div>
 
@@ -63,17 +118,43 @@
 <div class="pagamento-overlay" id="pagamentoOverlay">
   <div class="pagamento-modal">
     <div class="pagamento-header">
-      <h3>💳 Finalizar Compra</h3>
+      <h3> Finalizar Compra</h3>
       <button onclick="fecharPagamento()">✕</button>
     </div>
 
     <div class="pagamento-resumo" id="pagamentoResumo"></div>
 
+    <!-- CEP / FRETE -->
+    <div class="pagamento-cep">
+      <p><strong>📍 Endereço de entrega</strong></p>
+      <div class="cep-linha">
+        <input type="text" id="cepInput" placeholder="Digite seu CEP" maxlength="9" oninput="mascaraCep(this)">
+        <button type="button" onclick="calcularFrete()">Calcular</button>
+      </div>
+      <div id="cepResultado"></div>
+
+      <div class="endereco-detalhes" id="enderecoDetalhes" style="display:none">
+        <div class="endereco-linha">
+          <input type="text" id="numeroCasa" placeholder="Número *">
+          <input type="text" id="complemento" placeholder="Complemento (opcional)">
+        </div>
+      </div>
+    </div>
+
+    <!-- CUPOM -->
+    <div class="pagamento-cupom">
+      <p><strong>🎟️ Cupom de desconto</strong></p>
+      <div class="cupom-linha">
+        <input type="text" id="cupomInput" placeholder="Digite seu cupom">
+        <button type="button" onclick="aplicarCupom()">Aplicar</button>
+      </div>
+      <div id="cupomResultado"></div>
+    </div>
+
     <div class="pagamento-metodos">
       <p><strong>Forma de pagamento:</strong></p>
-      <label><input type="radio" name="pagamento" value="pix" checked> PIX</label>
-      <label><input type="radio" name="pagamento" value="cartao"> Cartão de crédito</label>
-      <label><input type="radio" name="pagamento" value="boleto"> Boleto</label>
+      <label><input type="radio" name="pagamento" value="pix" checked onchange="atualizarMetodoPagamento()"> PIX</label>
+      <label><input type="radio" name="pagamento" value="cartao" onchange="atualizarMetodoPagamento()"> Cartão (Crédito ou Débito)</label>
     </div>
 
     <div id="pagamento-extra"></div>
@@ -90,7 +171,7 @@
     <div class="slide">
       <div class="slide-bg" ></div>
       <a href="#loja">
-      <img src="css/imagem css/banner1.jpeg" alt="banner 1" class="slide-bg">
+      <img src="css/imagem css/banner2.jpeg" alt="banner 1" class="slide-bg">
       </a>
     </div>
 
@@ -127,8 +208,8 @@ pets
     <p>A Lume Pet nasceu para unir amor e responsabilidade, oferecendo produtos de qualidade e promovendo o bem-estar animal. Junte-se a nós nessa jornada de cuidado e carinho pelos nossos amigos de quatro patas.</p>
    
     <div class="botao">
-    <button class="btn-primary">Fazer Doação</button> 
-    <button class="btn-seg">Adotar um Pet</button>
+    <a href="#doacao"><button class="btn-primary">Fazer Doação</button></a>
+    <a href="#adote"><button class="btn-seg">Adotar um Pet</button></a>
     </div>    
 </section>
 
@@ -139,16 +220,16 @@ pets
 
   <!-- BARRA DE PESQUISA -->
   <div class="loja-pesquisa">
-    <input type="text" id="campoPesquisa" placeholder="🔍 Pesquisar produto..." oninput="filtrarProdutos()">
+    <input type="text" id="campoPesquisa" placeholder="🔍 Digite o que seu pet precisa..." oninput="filtrarProdutos()">
   </div>
 
   <!-- CATEGORIAS -->
   <div class="loja-categorias">
-    <button class="categoria-btn ativo" onclick="filtrarCategoria('geral')">Geral</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('higiene')">Higiene</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('alimento')">Alimento</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('brinquedo')">Brinquedos</button>
-    <button class="categoria-btn" onclick="filtrarCategoria('conforto')">Conforto</button>
+    <button class="categoria-btn ativo" onclick="filtrarCategoria('geral', event)">Geral</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('higiene', event)">Higiene</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('alimento', event)">Alimento</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('brinquedo', event)">Brinquedos</button>
+    <button class="categoria-btn" onclick="filtrarCategoria('conforto', event)">Conforto</button>
   </div>
 
   <!-- GRADE DE PRODUTOS -->
@@ -158,8 +239,8 @@ pets
       <h3>Nenhum produto encontrado</h3>
       <p>Não encontramos itens com essa busca. Tente outra palavra ou confira as categorias.</p>
       <div class="loja-sugestoes">
-        <span>💡 Sugestões que você pode gostar</span>
-        <p>Shampoo Hidratante, Condicionador Hidratante ou Cama Pet</p>
+        <span> Que tal ajudar uma instituição?</span>
+        <p>Ao fazer uma doação no site da Lume Pet o valor é destinado 100% à insituição parceira!</p>
       </div>
     </div>
 
@@ -190,6 +271,7 @@ pets
       </div>
       <h3>Kit de Higiene para Cães</h3>
       <p>Higiene bucal fácil e segura.</p>
+      <p>Kit de higiene pet completo Pet Clean</p>
       <span class="produto-preco">R$ 19,90</span>
       <button onclick="adicionarAoCarrinho('Escova de Dentes Pet', '19,90')">Adicionar ao carrinho</button>
     </div>
@@ -200,6 +282,7 @@ pets
       </div>
       <h3>Toalha Umedecida Pet</h3>
       <p>Toalha Umedecida Biodegradável Cansei de ser Gato com 50 und.</p>
+      <p>Toalha Umedecida Biodegradável Cansei de ser Gato com 50 unidades</p>
       <span class="produto-preco">R$ 25,90</span>
       <button onclick="adicionarAoCarrinho('Lenço Umedecido Pet', '25,90')">Adicionar ao carrinho</button>
     </div>
@@ -257,19 +340,23 @@ pets
     </div>
 
     <div class="produto-card" data-categoria="brinquedo" data-nome="corda de puxar">
-      <div class="produto-img">🪢</div>
-      <h3>Corda de Puxar</h3>
-      <p>Ótima para brincar e limpar os dentes.</p>
+      <div class="produto-img">
+        <img src="css/imagem css/brinquedo de puxar.jpg" alt="Corda de Puxar">
+      </div>
+      <h3>Brinquedo de Puxar</h3>
+      <p>Brinquedo Spike Bola de Corda de Puxar Laranja para Cães</p>
       <span class="produto-preco">R$ 17,90</span>
       <button onclick="adicionarAoCarrinho('Corda de Puxar', '17,90')">Adicionar ao carrinho</button>
     </div>
 
     <div class="produto-card" data-categoria="brinquedo" data-nome="ratinho de pelúcia">
-      <div class="produto-img">🐭</div>
+      <div class="produto-img">
+        <img src="css/imagem css/rato de pelucia.jpg" alt="Ratinho de Pelúcia">
+      </div>
       <h3>Ratinho de Pelúcia</h3>
-      <p>Brinquedo macio favorito dos gatos.</p>
-      <span class="produto-preco">R$ 15,90</span>
-      <button onclick="adicionarAoCarrinho('Ratinho de Pelúcia', '15,90')">Adicionar ao carrinho</button>
+      <p>Brinquedo Cansei de Ser Gato Presas Robert para Gatos</p>
+      <span class="produto-preco">R$ 25,90</span>
+      <button onclick="adicionarAoCarrinho('Ratinho de Pelúcia', '25,90')">Adicionar ao carrinho</button>
     </div>
 
     <div class="produto-card" data-categoria="brinquedo" data-nome="arranhador gato">
@@ -277,7 +364,7 @@ pets
         <img src="css/imagem css/arranhadorgato.jpg" alt="Arranhador para Gato">
       </div>
       <h3>Arranhador para Gato</h3>
-      <p>Protege seus móveis com estilo.</p>
+      <p>Arranhador Fuzz Post Fred para Gatos</p>
       <span class="produto-preco">R$ 54,90</span>
       <button onclick="adicionarAoCarrinho('Arranhador para Gato', '54,90')">Adicionar ao carrinho</button>
     </div>
@@ -289,30 +376,36 @@ pets
       </div>
       <h3>Cama Pet</h3>
       <p>Conforto e aconchego para seu animal.</p>
-      <span class="produto-preco">R$ 89,90</span>
-      <button onclick="adicionarAoCarrinho('Cama Pet', '89,90')">Adicionar ao carrinho</button>
+      <span class="produto-preco">R$ 189,90</span>
+      <button onclick="adicionarAoCarrinho('Cama Pet', '189,90')">Adicionar ao carrinho</button>
     </div>
 
     <div class="produto-card" data-categoria="conforto" data-nome="caminha donut">
-      <div class="produto-img">🍩</div>
+      <div class="produto-img">
+        <img src="css/imagem css/camadonut.jpg" alt="Caminha Donut">
+      </div>
       <h3>Caminha Donut</h3>
-      <p>Formato redondo super quentinho.</p>
-      <span class="produto-preco">R$ 99,90</span>
-      <button onclick="adicionarAoCarrinho('Caminha Donut', '99,90')">Adicionar ao carrinho</button>
+      <p>Cama Griff Dog para Cães Donut Marrom</p>
+      <span class="produto-preco">R$ 199,90</span>
+      <button onclick="adicionarAoCarrinho('Caminha Donut', '199,90')">Adicionar ao carrinho</button>
     </div>
 
     <div class="produto-card" data-categoria="conforto" data-nome="roupinha de frio">
-      <div class="produto-img">🧥</div>
+      <div class="produto-img">
+        <img src="css/imagem css/roupinhadefrio.jpg" alt="Roupinha de Frio">
+      </div>
       <h3>Roupinha de Frio</h3>
-      <p>Estilosa e quentinha para o inverno.</p>
-      <span class="produto-preco">R$ 49,90</span>
-      <button onclick="adicionarAoCarrinho('Roupinha de Frio', '49,90')">Adicionar ao carrinho</button>
+      <p>Casaco Tip Top Peludinhos Vaquinha Branca para Cães Tam M/P</p>
+      <span class="produto-preco">R$ 79,90</span>
+      <button onclick="adicionarAoCarrinho('Roupinha de Frio', '79,90')">Adicionar ao carrinho</button>
     </div>
 
     <div class="produto-card" data-categoria="conforto" data-nome="manta pet">
-      <div class="produto-img">🧣</div>
+      <div class="produto-img">
+       <img src="css/imagem css/mantadefrio.jpg" alt="Manta Pet">
+      </div>
       <h3>Manta Pet</h3>
-      <p>Macia e lavável para o dia a dia.</p>
+      <p>Manta Microfibra Vermelha para Cães Modernpet</p>
       <span class="produto-preco">R$ 34,90</span>
       <button onclick="adicionarAoCarrinho('Manta Pet', '34,90')">Adicionar ao carrinho</button>
     </div>
@@ -322,8 +415,8 @@ pets
 
 <!-- parte para o formulario de adoção-->
 <section class="adote" id="adote">
-    <h2>Adote um Amigo</h2>
-    <button>Responda o nosso formulário</button>
+  <h2>Adote um Amigo</h2>
+  <button onclick="window.open('https://docs.google.com/forms/d/19jwE_GqqetJgKmBXx1GyW-G6J0R0P3yBoZaWcABsxVQ/viewform?ts=6a5eda39&edit_requested=true', '_blank')">Responda o nosso formulário</button>
 </section>
 
 <!-- doação-->
@@ -361,10 +454,10 @@ pets
       <div class="campo-grupo">
         <label>Valor da doação <span class="obrigatorio">*</span></label>
         <div class="valores-rapidos">
-          <button type="button" class="btn-valor" onclick="selecionarValor(10)">R$ 10</button>
-          <button type="button" class="btn-valor" onclick="selecionarValor(25)">R$ 25</button>
-          <button type="button" class="btn-valor" onclick="selecionarValor(50)">R$ 50</button>
-          <button type="button" class="btn-valor" onclick="selecionarValor(100)">R$ 100</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(10, event)">R$ 10</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(25, event)">R$ 25</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(50, event)">R$ 50</button>
+          <button type="button" class="btn-valor" onclick="selecionarValor(100, event)">R$ 100</button>
         </div>
         <input type="number" id="doacao-valor" placeholder="Ou digite outro valor (R$)" min="1" oninput="limparBotoesValor()">
         <span class="erro" id="erro-valor"></span>
@@ -381,7 +474,7 @@ pets
   <div class="doacao-modal">
 
     <div class="doacao-modal-header">
-      <h3>💳 Forma de pagamento</h3>
+      <h3>Forma de pagamento</h3>
       <button onclick="fecharPagamentoDoacao()">✕</button>
     </div>
 
@@ -396,7 +489,7 @@ pets
     <!-- PIX -->
     <div class="metodo-detalhe" id="detalhe-pix">
       <p>Escaneie o QR Code ou copie a chave PIX abaixo:</p>
-      <div class="pix-qr">📱</div>
+      <div class="pix-qr"></div>
       <input type="text" value="lumepet@pix.com.br" readonly onclick="this.select()">
       <small>Clique na chave para selecionar e copiar</small>
     </div>
@@ -480,6 +573,66 @@ pets
 </footer>
 
 <script src="js/script.js"></script>
+
+ <!-- Biblioteca de icones Font Awesome -->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+    /* Remove margens da pagina */
+    body {
+        margin: 0;
+        padding-top: 80px;
+        background: #f4f4f4;
+        font-family: Arieal, sans-serif;
+}
+
+  /* Botao flutuante do WhatsApp */
+  .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-size: 35px;
+    text-decoration: none;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0.3);
+    transition: 0.3s;
+}
+
+ /* Efeito ao passar o mouse */
+ .whatsapp-float:hover {
+    background-color: #1ebe5d;
+    transform: scale(1.1);
+ }
+</style>
+</head>
+
+<body>
+    <!-- Botao do WhatsApp -->
+<a href="https://wa.me/5511999999999?text=Olá%20gostaria%20de%20mais%20informações"
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Conversar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+
+
+</body>
+
+
+</head>
+<body>
+    
+</body>
+</html>
 
 </body>
 </html>

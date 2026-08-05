@@ -16,6 +16,10 @@ section {
 }
 
 /* cabeçalho/menu */
+body {
+  padding-top: 80px;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -24,7 +28,7 @@ section {
     min-height: 84px;
     background-color: #eefdffbc;
     border-bottom: 3px solid transparent;
-    border-image: linear-gradient(to right, #FA8000, #2b8abad2);
+    border-image: linear-gradient(to right, #fa8, #fa8);
     border-image-slice: 1;
     position: fixed;
     width: 100%;
@@ -42,6 +46,7 @@ section {
 .header nav ul {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
@@ -55,6 +60,15 @@ section {
 
 .header nav ul li a:hover {
     color: #FA8000;
+}
+
+/* USUÁRIO / LOGIN - ÍCONE */
+.usuario-icon {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
 }
 
 /* CARRINHO - ÍCONE */
@@ -72,6 +86,99 @@ section {
   padding: 1px 6px;
   position: relative;
   top: -8px;
+}
+
+/* MODAL LOGIN / CADASTRO */
+.login-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2100;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-overlay.aberto {
+  display: flex;
+}
+
+.login-modal {
+  background: #FFFEEE;
+  border-radius: 14px;
+  padding: 28px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.login-header h3 {
+  color: #385A81;
+  font-size: 18px;
+}
+
+.login-header button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #385A81;
+}
+
+.login-abas {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.aba-btn {
+  flex: 1;
+  padding: 9px;
+  border: 2px solid #2d8bba;
+  border-radius: 8px;
+  background: #fff;
+  color: #385A81;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.aba-btn.ativo,
+.aba-btn:hover {
+  background: #2d8bba;
+  color: #fff;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.btn-confirmar-login {
+  width: 100%;
+  background: #385A81;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 4px;
+}
+
+.btn-confirmar-login:hover {
+  background: #FA8000;
 }
 
 /* CARRINHO - PAINEL */
@@ -235,6 +342,8 @@ section {
   padding: 28px;
   width: 90%;
   max-width: 420px;
+  max-height: 88vh;
+  overflow-y: auto;
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
@@ -268,6 +377,199 @@ section {
   color: #333;
   max-height: 160px;
   overflow-y: auto;
+}
+
+.pagamento-resumo p {
+  margin: 2px 0;
+}
+
+/* CEP / FRETE dentro do pagamento */
+.pagamento-cep,
+.pagamento-cupom {
+  margin-bottom: 16px;
+}
+
+.pagamento-cep p,
+.pagamento-cupom p {
+  font-size: 13px;
+  color: #385A81;
+  margin-bottom: 6px;
+}
+
+.cep-linha,
+.cupom-linha {
+  display: flex;
+  gap: 8px;
+}
+
+.cep-linha input,
+.cupom-linha input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #cde0d3;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+
+.cep-linha input:focus,
+.cupom-linha input:focus {
+  border-color: #2d8bba;
+}
+
+.cep-linha button,
+.cupom-linha button {
+  background: #2d8bba;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.cep-linha button:hover,
+.cupom-linha button:hover {
+  background: #385A81;
+}
+
+#cepResultado,
+#cupomResultado {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* NÚMERO / COMPLEMENTO */
+.endereco-detalhes {
+  margin-top: 10px;
+}
+
+.endereco-linha {
+  display: flex;
+  gap: 8px;
+}
+
+.endereco-linha input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #cde0d3;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+
+.endereco-linha input:focus {
+  border-color: #2d8bba;
+}
+
+/* BLOCO PIX */
+.pix-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #555;
+}
+
+.pix-aviso {
+  background: #fff4e0;
+  border: 1px solid #f2c98a;
+  color: #8a5d00;
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.pix-aviso strong {
+  font-size: 15px;
+}
+
+.pix-bloco .pix-qr {
+  font-size: 60px;
+  text-align: center;
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.pix-bloco input {
+  padding: 10px 14px;
+  border: 2px solid #cde0d3;
+  border-radius: 8px;
+  font-size: 12px;
+  outline: none;
+  width: 100%;
+  word-break: break-all;
+}
+
+/* BLOCO CARTÃO */
+.cartao-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #555;
+}
+
+.cartao-tipo {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.cartao-tipo label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #385A81;
+}
+
+.cartao-bloco input {
+  padding: 10px 14px;
+  border: 2px solid #cde0d3;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.cartao-bloco input:focus {
+  border-color: #2d8bba;
+}
+
+.frete-ok {
+  display: block;
+  background: #e8f4ea;
+  border: 1px solid #b8dcc0;
+  color: #2e7d43;
+  border-radius: 8px;
+  padding: 8px 10px;
+  line-height: 1.5;
+}
+
+.erro-frete {
+  display: block;
+  color: #e74c3c;
+  font-size: 12px;
+}
+
+.carregando-frete {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  font-style: italic;
 }
 
 .pagamento-metodos {
@@ -309,8 +611,7 @@ section {
   width: 100%;
   height: auto;
   overflow: hidden;
-  background: none;
-
+  background: #eee;
 }
  
 .slides {
@@ -322,17 +623,30 @@ section {
  
 .slide {
   min-width: 100%;
+  width: 100%;
   height: 100%;
   position: relative;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.slide a {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
  
 .slide-bg {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   background-size: cover;
   background-position: center;
+  display: block;
 }
  
  
@@ -380,10 +694,10 @@ section {
 }
 .nav-prev { 
   left: 16px;
-transform: rotate(-90deg); }
+transform: translateY(-50%) rotate(-90deg); }
 .nav-next { 
   right: 16px;
-transform: rotate(90deg); }
+transform: translateY(-50%) rotate(90deg); }
  
 /* Dots */
 .dots {
@@ -412,7 +726,7 @@ transform: rotate(90deg); }
   transform: scale(1.35);
 }
  
-/* Barra de progresso */
+/* Barra de progresso CARROSSEL*/
 .progress-bar {
   height: 3px;
   background: rgba(255,255,255,0.08);
@@ -421,11 +735,11 @@ transform: rotate(90deg); }
  
 .progress-fill {
   height: 100%;
-  background: #2d8bba;
-  transition: width 0.1s linear;
+  background: linear-gradient(to right, #2d8bbac8, #fa810073);
+  transition: width 0.2s linear;
 }
  
-/* SERVIÇO / MISSÃO */
+/* SERVIÇO / MISSÃO / BOTÕES DE FAZER UMA DOAÇÃO OU ADOÇÃO NO INÍCIO */
 .servico {
   text-align: center;
   padding: 60px 40px;
@@ -465,7 +779,11 @@ transform: rotate(90deg); }
   transition: background 0.2s;
 }
  
-.btn-primary:hover { background: #385A81; }
+.btn-primary:hover { 
+  background: #385A81;
+  color: #fff;
+  transform: translateY(-1px);
+}
  
 .btn-seg {
   background: transparent;
@@ -482,6 +800,7 @@ transform: rotate(90deg); }
 .btn-seg:hover {
   background: #385A81;
   color: #fff;
+  transform: translateY(-1px);
 }
 
 /*LOJA*/
@@ -557,6 +876,11 @@ transform: rotate(90deg); }
   border-color: #fa8000;
   color: #fff;
   transform: translateY(-1px);
+}
+
+.categoria-btn.desativado {
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 /* GRADE DE PRODUTOS */
@@ -1191,14 +1515,53 @@ transform: rotate(90deg); }
     justify-content: center;
     gap: 14px;
   }
- 
+
+  .header nav ul li a {
+    margin-left: 0;
+  }
+
+  /* CARROSSEL NO CELULAR */
+  .slides { height: 230px; }
+
+  .nav-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .nav-prev { left: 8px; }
+  .nav-next { right: 8px; }
+
+  .dots { bottom: 10px; }
+  .dot { width: 7px; height: 7px; }
+
   .slide-title { font-size: 30px; }
   .slide-content { padding: 0 30px; }
-  .slides { height: 300px; }
+
+  .cep-linha,
+  .cupom-linha,
+  .endereco-linha {
+    flex-direction: column;
+  }
+
+  .cep-linha button,
+  .cupom-linha button {
+    padding: 10px;
+  }
  
   .menu, .adote, .doacao, .sobre, .avaliacao {
     padding: 40px 20px;
   }
  
   .container-card { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 480px) {
+  .slides { height: 170px; }
+
+  .nav-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
 }
